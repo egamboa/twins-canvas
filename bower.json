@@ -3,7 +3,9 @@
   "private": true,
   "dependencies": {
     "bootstrap-sass": "~3.3.5",
-    "modernizr": "~2.8.1"
+    "modernizr": "~2.8.1",
+    "TweenJS": "^0.6.2",
+    "EaselJS": "^0.8.2"
   },
   "overrides": {
     "bootstrap-sass": {
