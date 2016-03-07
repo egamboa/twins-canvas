@@ -1,5 +1,7 @@
 'use strict';
 
 $(function() {
-  theTwins.init();
+  if($('#canvas-twins').size() > 0){
+    theTwins.init();
+  }
 });

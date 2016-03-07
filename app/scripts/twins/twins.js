@@ -2,64 +2,29 @@
 
 var theTwins = (function () {
   var twinsCanvas = document.getElementById('canvas-twins'),
-      stage       = new createjs.Stage(twinsCanvas),
-      xspacing    = 30,    // Distance between each horizontal location
-      theta       = 0.0,   // Start angle at 0
-      amplitude   = 20.0,  // Height of wave
-      period      = 450.0, // How many pixels before the wave repeats
+      stage = new createjs.Stage(twinsCanvas),
+      xspacing = 30,    // Distance between each horizontal location
+      theta = 0.0,   // Start angle at 0
+      amplitude = 20.0,  // Height of wave
+      period = 450.0, // How many pixels before the wave repeats
       dx,                  // Value for incrementing x
-      plntCfg = {
-        'size': 40,
-        'maxTime': 5000,
-        'minTime': 3000,
-        'maxAccel': 121,
-        'minAccel': 40,
-        'imgRed': 'planetred',
-        'imgBlue': 'planetblue'
-      },// Configuration planet object
       sectionSize = 30;    // Size of boxes and each square of animation(Twins)
 
   function msg(text){
     console.log(text);
   }
 
-  function init(){
-    stage.autoClear = true;
-    dx = ((2 * Math.PI) / period) * xspacing;
-    //Initiate twins function
-    initTwins();
-    //Initiate planet function
-    thePlanets.init();
-    //Initiate stars function
-    theStars.init();
-    //Start thick, like Draw(), 1 call per frame
-    createjs.Ticker.setFPS(60);
-    createjs.Ticker.addEventListener('tick', tick);
-  }
-
-  function initTwins(){
-    //Creating Twins
-    createTwin('red', '#ccc', sectionSize, 0, 'circle');
-    for(var x = 1; x < 26; x++){
-      createTwin('red', '#ed187d', sectionSize, x);
-    }
-    for(var x = 1; x < 26; x++){
-      createTwin('blue', '#716e9a', sectionSize, x);
-    }
-    createTwin('blue', '#ccc', sectionSize, 26, 'circle');
-  }
-
   function createTwin(type, color, size, index, circle){
     var shape, graphics;
     if(circle === 'circle'){
-      graphics = new createjs.Graphics().beginFill(color).drawCircle(15, 15, size/2);
+      graphics = new createjs.Graphics().beginFill(color).drawCircle(15, 15, size / 2);
     }else{
       graphics = new createjs.Graphics().beginFill(color).drawRect(0, 0, size, size);
     }
 
-    var shape = new createjs.Shape(graphics);
-    shape.regX = shape.regY = sectionSize/2;
-    shape.x = sectionSize*(index+2);
+    shape = new createjs.Shape(graphics);
+    shape.regX = shape.regY = sectionSize / 2;
+    shape.x = sectionSize * (index + 2);
     shape.twinType = type;
     stage.addChild(shape);
   }
@@ -76,9 +41,9 @@ var theTwins = (function () {
     });
 
     $.each(redChildren.reverse(), function(key, twin){
-      twin.y = Math.sin(x)*amplitude+145;
-      twin.rotation = Math.sin(x)*5;
-      x+=dx;
+      twin.y = Math.sin(x) * amplitude + 145;
+      twin.rotation = Math.sin(x) * 5;
+      x += dx;
     });
 
     x = theta;
@@ -86,9 +51,9 @@ var theTwins = (function () {
       return element.twinType === 'blue';
     });
     $.each(blueChildren, function(key, twin){
-      twin.y = Math.sin(x)*amplitude+455;
-      twin.rotation = Math.sin(x)*5;
-      x+=dx;
+      twin.y = Math.sin(x) * amplitude + 455;
+      twin.rotation = Math.sin(x) * 5;
+      x += dx;
     });
   }
 
@@ -96,6 +61,32 @@ var theTwins = (function () {
     moveTwins();
     thePlanets.move();
     stage.update(event);
+  }
+
+  function initTwins(){
+    //Creating Twins
+    createTwin('red', '#ccc', sectionSize, 0, 'circle');
+    for(var x = 1; x < 26; x++){
+      createTwin('red', '#ed187d', sectionSize, x);
+    }
+    for(x = 1; x < 26; x++){
+      createTwin('blue', '#716e9a', sectionSize, x);
+    }
+    createTwin('blue', '#ccc', sectionSize, 26, 'circle');
+  }
+
+  function init(){
+    stage.autoClear = true;
+    dx = ((2 * Math.PI) / period) * xspacing;
+    //Initiate twins function
+    initTwins();
+    //Initiate planet function
+    thePlanets.init();
+    //Initiate stars function
+    theStars.init();
+    //Start thick, like Draw(), 1 call per frame
+    createjs.Ticker.setFPS(60);
+    createjs.Ticker.addEventListener('tick', tick);
   }
 
   return {
@@ -106,4 +97,6 @@ var theTwins = (function () {
 
 })();
 
-theTwins.ready;
+(function(){
+  return theTwins.ready;
+})();

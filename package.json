@@ -41,7 +41,9 @@
     },
     "globals" : {
         "$": true,
-        "TheTwins": true,
+        "theTwins": true,
+        "theStars": true,
+        "thePlanets": true,
         "createjs": true
     }
   }

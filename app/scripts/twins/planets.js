@@ -1,24 +1,19 @@
 'use strict';
 
 var thePlanets = (function () {
-  var twinsCanvas = document.getElementById('canvas-twins'),
-      plntCfg = {
+  var plntCfg = {
         'size': 40,
         'maxTime': 5000,
         'minTime': 3000,
         'maxAccel': 121,
         'minAccel': 40,
         'imgRed': 'planetred',
-        'imgBlue': 'planetblue'
+        'imgBlue': 'planetblue',
+        'imagePath': '/images/'
       };
 
   function msg(text){
     console.log(text);
-  }
-
-  function init(){
-    //Initiate planet function
-    initPlanets('blue');
   }
 
   function initPlanets(type){
@@ -39,16 +34,16 @@ var thePlanets = (function () {
     var planet,
         randPlanet = parseInt(Math.random() * (6 - 1) + 1);
     if(type === 'red'){
-      planet = new createjs.Bitmap('../images/'+plntCfg['imgRed']+randPlanet+'.png');
+      planet = new createjs.Bitmap(plntCfg.imagePath + plntCfg.imgRed + randPlanet + '.png');
       planet.y = parseInt(Math.random() * (550 - 350) + 310);
       planet.x = 945;
     }else{
-      planet = new createjs.Bitmap('../images/'+plntCfg['imgBlue']+randPlanet+'.png');
+      planet = new createjs.Bitmap(plntCfg.imagePath + plntCfg.imgBlue + randPlanet + '.png');
       planet.y = parseInt(Math.random() * (250 - 50) + 40);
       planet.x = -45;
     }
-    planet.scaleX = accel/100;
-    planet.scaleY = accel/100;
+    planet.scaleX = accel / 100;
+    planet.scaleY = accel / 100;
     planet.pType = type;
     planet.accel = accel;
     theTwins.stage.addChildAt(planet, 0);
@@ -59,7 +54,7 @@ var thePlanets = (function () {
       return element.pType === 'red';
     });
     $.each(planetsRed, function(key, planet){
-      planet.x = planet.x - (planet.accel/80);
+      planet.x = planet.x - (planet.accel / 80);
       if(planet.x < -45){
         theTwins.stage.removeChild(planet);
       }
@@ -68,11 +63,16 @@ var thePlanets = (function () {
       return element.pType === 'blue';
     });
     $.each(planetsBlue, function(key, planet){
-      planet.x = planet.x + (planet.accel/80);
+      planet.x = planet.x + (planet.accel / 80);
       if(planet.x > 945){
         theTwins.stage.removeChild(planet);
       }
     });
+  }
+
+  function init(){
+    //Initiate planet function
+    initPlanets('blue');
   }
 
   return {
@@ -83,4 +83,6 @@ var thePlanets = (function () {
 
 })();
 
-thePlanets.ready;
+(function(){
+  return thePlanets.ready;
+})();

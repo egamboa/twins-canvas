@@ -33,17 +33,17 @@ var theStars = (function () {
   Star.prototype.draw = function() {
     var shape, graphics;
     graphics = new createjs.Graphics().beginFill('#fff').drawCircle(this.x, this.y, this.length);
-    var shape = new createjs.Shape(graphics);
+    shape = new createjs.Shape(graphics);
     shape.alpha = this.opacity;
     shape.star = true;
     this.shape = shape;
-    createjs.Tween.get(shape, { loop:true })
+    createjs.Tween.get(shape, { loop: true })
          .wait(100)
-         .to({alpha:Math.random()}, 1500)
-         .to({alpha:Math.random()}, 1500)
-         .to({alpha:this.opacity}, 1500);
+         .to({alpha: Math.random()}, 1500)
+         .to({alpha: Math.random()}, 1500)
+         .to({alpha: this.opacity}, 1500);
     theTwins.stage.addChildAt(shape, 0);
-  }
+  };
 
   function init(){
     // Calculate the screen size
@@ -73,4 +73,6 @@ var theStars = (function () {
 
 })();
 
-theStars.ready;
+(function(){
+  return theStars.ready;
+})();
