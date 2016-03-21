@@ -44,7 +44,8 @@
         "theTwins": true,
         "theStars": true,
         "thePlanets": true,
-        "createjs": true
+        "createjs": true,
+        "theMustang": true
     }
   }
 }
