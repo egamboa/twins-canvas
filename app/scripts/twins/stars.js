@@ -1,7 +1,7 @@
 'use strict';
 
 var theStars = (function () {
-  var canvas, screenH, screenW, stars = [], numStars = 300;
+  var canvas, screenH, screenW, stars = [], numStars = 500;
 
   function msg(text){
     console.log(text);
