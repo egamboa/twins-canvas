@@ -148,6 +148,7 @@ gulp.task('wiredep', () => {
   gulp.src('app/styles/*.scss')
     .pipe(wiredep({
       ignorePath: /^(\.\.\/)+/
+      //ignorePath: /string or regexp to ignore from the injected filepath/
     }))
     .pipe(gulp.dest('app/styles'));
 
