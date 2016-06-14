@@ -90,9 +90,9 @@ var theTwins = (function () {
   }
 
   return {
-      init: init,
-      ready: msg('ready twins'),
-      stage: stage
+    init: init,
+    ready: msg('ready twins'),
+    stage: stage
   };
 
 })();

@@ -1,6 +1,6 @@
 'use strict';
 
-var theMustang = (function () {
+/*var theMustang = (function () {
   var twinsCanvas = document.getElementById('canvas-mustang');
 
   function msg(text){
@@ -29,4 +29,4 @@ var theMustang = (function () {
 
 (function(){
   return theMustang.ready;
-})();
+})();*/
