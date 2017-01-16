@@ -1,10 +1,10 @@
 'use strict';
 
 $(function() {
-  if($('#canvas-twins').size() > 0){
+  if($('#canvas-twins').length > 0){
     theTwins.init();
   }
-  if($('#canvas-mustang').size() > 0){
+  if($('#canvas-mustang').length > 0){
     theMustang.init();
   }
 });
