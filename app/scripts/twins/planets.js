@@ -9,7 +9,7 @@ var thePlanets = (function () {
         'minAccel': 40,
         'imgRed': 'planetred',
         'imgBlue': 'planetblue',
-        'imagePath': '/images/'
+        'imagePath': 'images/'
       };
 
   function msg(text){
